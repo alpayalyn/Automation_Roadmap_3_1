@@ -39,6 +39,7 @@ class SegmentPush(WebPush):
 
 class PriceAlertPush(WebPush):
 
+    @staticmethod
     def discountPrice(price_info, discount_rate):
 
 
@@ -53,14 +54,19 @@ class InstockPush(WebPush):
         super().__init__(Platform, optin, global_frequency_capping, start_date, end_date, language, push_type)
         WebPush.send_push(self)
 
+    @staticmethod
     def stockUpdate(stock_info):
 
-        if(stock_info == True):
+
+        if (stock_info == True):
 
             stock_info = False
+            print(stock_info)
 
-        else:
+        elif(stock_info == False)
+
             stock_info = True
+            print(stock_info)
 
         return stock_info
 
@@ -73,8 +79,12 @@ PriceInfo_ = int(input("Please enter Price Info:"))
 DiscountRate_ = float(input("Please enter Discount Rate:"))
 stock_info = bool(input("Please enter Stock Info Update:"))
 
+
 Instock_Push_Nesne = InstockPush("Chrome", True, "Three_views_in_24hours", "09.19.2021", "10.19.2021", "ENG", "Instock Push")
+Instock_Push_Nesne.stockUpdate(stock_info)
+
 
 AbouttheDiscount = PriceAlertPush.discountPrice(PriceInfo_, DiscountRate_)
 print(AbouttheDiscount)
+
 
