@@ -17,7 +17,7 @@ class TriggerPush(WebPush):
 
     def __init__(self, Platform, optin, global_frequency_capping, start_date, end_date, language, push_type):
 
-        WebPush.__init__(self, Platform, optin, global_frequency_capping, start_date, end_date, language, push_type)
+        super().__init__(Platform, optin, global_frequency_capping, start_date, end_date, language, push_type)
         Trigger_page = "Homepage"
         WebPush.send_push(self)
 
@@ -25,7 +25,7 @@ class BulkPush(WebPush):
 
     def __init__(self, Platform, optin, global_frequency_capping, start_date, end_date, language, push_type):
 
-        WebPush.__init__(self, Platform, optin, global_frequency_capping, start_date, end_date, language, push_type)
+        super().__init__(Platform, optin, global_frequency_capping, start_date, end_date, language, push_type)
         send_date = int(51)
         WebPush.send_push(self)
 
@@ -33,7 +33,7 @@ class SegmentPush(WebPush):
 
     def __init__(self, Platform, optin, global_frequency_capping, start_date, end_date, language, push_type):
 
-        WebPush.__init__(self, Platform, optin, global_frequency_capping, start_date, end_date, language, push_type)
+        super().__init__(Platform, optin, global_frequency_capping, start_date, end_date, language, push_type)
         segment_name = str("Book Searchers")
         WebPush.send_push(self)
 
@@ -41,7 +41,7 @@ class PriceAlertPush(WebPush):
 
     def discountPrice(price_info, discount_rate):
 
-        price_info = price_info
+
         discount_rate = price_info * discount_rate
 
         return discount_rate
@@ -50,7 +50,7 @@ class InstockPush(WebPush):
 
     def __init__(self, Platform, optin, global_frequency_capping, start_date, end_date, language, push_type):
 
-        WebPush.__init__(self, Platform, optin, global_frequency_capping, start_date, end_date, language, push_type)
+        super().__init__(Platform, optin, global_frequency_capping, start_date, end_date, language, push_type)
         WebPush.send_push(self)
 
     def stockUpdate(stock_info):
@@ -77,5 +77,4 @@ Instock_Push_Nesne = InstockPush("Chrome", True, "Three_views_in_24hours", "09.1
 
 AbouttheDiscount = PriceAlertPush.discountPrice(PriceInfo_, DiscountRate_)
 print(AbouttheDiscount)
-
 
