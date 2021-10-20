@@ -40,7 +40,13 @@ class SegmentPush(WebPush):
 
 class PriceAlertPush(WebPush):
 
-    def discountPrice(price_info, discount_rate):
+    def __init__(self, push_type):
+
+        self.push_type = push_type
+        WebPush.send_push(self)
+
+    @classmethod
+    def discountPrice(cls, price_info, discount_rate):
 
         price_info = price_info
         discount_rate = price_info * discount_rate
@@ -52,11 +58,11 @@ class InstockPush(WebPush):
     def __init__(self, push_type):
 
         self.push_type = push_type
+        WebPush.send_push(self)
 
-    @staticmethod
-    def stockUpdate(stock_info):
-        print(type(stock_info))
-        print(stock_info)
+    @classmethod
+    def stockUpdate(cls, stock_info):
+
         stock_info = stock_info.lower()
 
         if (stock_info == "true"):
@@ -72,6 +78,8 @@ Web_Push_Nesne.send_push()
 Trigger_Push_Nesne = TriggerPush("Trigger Push")
 Bulk_Push_Nesne = BulkPush("Bulk Push")
 Segment_Push_Nesne = SegmentPush("Segment Push")
+Price_Alert_Nesne = PriceAlertPush("Price Alert Push")
+
 
 PriceInfo_ = int(input("Please enter Price Info:"))
 DiscountRate_ = float(input("Please enter Discount Rate:"))
